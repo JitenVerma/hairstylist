@@ -5,6 +5,7 @@ export const runtime = "nodejs";
 
 const MODEL_NAME = "gemini-2.5-flash-image";
 const MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024;
+const MAX_TOTAL_IMAGE_BYTES = Math.floor(4.2 * 1024 * 1024);
 const ALLOWED_MIME_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
 
 function isImageFile(value) {
@@ -82,6 +83,16 @@ export async function POST(request) {
     validateFile(front, "Front image");
     validateFile(side, "Side image");
     validateFile(rear, "Rear image");
+
+    const totalSizeBytes = front.size + side.size + rear.size;
+    if (totalSizeBytes > MAX_TOTAL_IMAGE_BYTES) {
+      return NextResponse.json(
+        {
+          error: "Total image payload is too large. Please keep all 3 images under 4.2 MB combined."
+        },
+        { status: 400 }
+      );
+    }
 
     const [frontPart, sidePart, rearPart] = await Promise.all([
       fileToInlinePart(front),

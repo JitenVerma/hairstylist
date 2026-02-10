@@ -251,6 +251,26 @@ body {
   text-overflow: ellipsis;
 }
 
+.upload-size-meta {
+  margin: 4px 0 22px;
+}
+
+.size-line {
+  margin: 0;
+  color: #c9ece4;
+  font-weight: 600;
+}
+
+.size-line.warning {
+  color: #ffd6d6;
+}
+
+.size-hint {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
 .style-section {
   margin-bottom: 22px;
 }
@@ -319,6 +339,73 @@ body {
   margin: 14px 0 0;
   color: #ffd6d6;
   font-weight: 600;
+}
+
+.banana-loader {
+  margin-top: 16px;
+  border: 1px solid rgba(244, 198, 76, 0.45);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(247, 207, 84, 0.22), transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(255, 168, 56, 0.2), transparent 40%),
+    rgba(38, 33, 17, 0.62);
+  padding: 16px 14px;
+}
+
+.banana-loader-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 40px;
+}
+
+.banana-shape {
+  width: 28px;
+  height: 16px;
+  border-radius: 26px 8px 22px 12px;
+  background: linear-gradient(140deg, #ffe27a, #f8b133 70%, #e28b14);
+  border: 1px solid rgba(255, 238, 179, 0.55);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
+  transform-origin: center bottom;
+}
+
+.banana-shape::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 4px;
+  margin-left: 2px;
+  margin-top: 11px;
+  border-radius: 999px;
+  background: #55320e;
+  opacity: 0.62;
+}
+
+.banana-shape.b1 {
+  animation: banana-bounce 800ms ease-in-out infinite;
+}
+
+.banana-shape.b2 {
+  animation: banana-bounce 800ms ease-in-out infinite 120ms;
+}
+
+.banana-shape.b3 {
+  animation: banana-bounce 800ms ease-in-out infinite 240ms;
+}
+
+.banana-loader-title {
+  margin: 10px 0 4px;
+  text-align: center;
+  color: #ffe7a4;
+  font-weight: 700;
+}
+
+.banana-loader-copy {
+  margin: 0;
+  text-align: center;
+  color: #dccf9c;
+  font-size: 0.95rem;
 }
 
 .result-panel {
@@ -405,6 +492,18 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes banana-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-9deg) scale(1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translateY(-8px) rotate(-3deg) scale(1.06);
+    opacity: 1;
   }
 }
 
